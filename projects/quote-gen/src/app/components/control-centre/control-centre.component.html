@@ -1,0 +1,14 @@
+<!-- src/app/components/control-centre/control-centre.component.html -->
+<div class="flex flex-wrap gap-4 justify-center">
+    <button (click)="generateNewQuote()" class="btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+        Generate New Quote
+    </button>
+    <div class="flex gap-4">
+        <button (click)="downloadImage('jpg')" class="btn bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+            Download JPG
+        </button>
+        <button (click)="downloadImage('png')" class="btn bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+            Download PNG
+        </button>
+    </div>
+</div>
