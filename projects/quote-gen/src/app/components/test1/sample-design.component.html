@@ -1,0 +1,120 @@
+<div class="bg-gray-900 text-gray-200 w-screen h-screen p-4 font-inter flex flex-col overflow-hidden">
+    <!-- Main Content -->
+    <main class="flex gap-4 justify-between h-full">
+        <!-- Left Panel -->
+        <section class="w-1/3 flex flex-col gap-6 border">
+            <!-- Quote-Gen Header -->
+            <div class="flex flex-col items-start mb-2">
+                <span class="text-2xl font-extrabold tracking-wide text-purple-400 pl-1 pb-1">Quote-Gen</span>
+                <hr class="border-gray-700 w-full mb-2"/>
+            </div>
+
+            <!-- Quote Input -->
+            <div class="bg-gray-800 p-5 rounded-xl shadow-lg flex flex-col gap-3">
+                <label class="text-base font-semibold text-gray-100 flex items-center gap-2">
+                    <span class="text-purple-400">📝</span> Enter Your Quote
+                </label>
+                <textarea
+                    class="w-full p-3 rounded-lg bg-gray-700 text-gray-200 text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                    placeholder="Type your inspiring quote here..."
+                    rows="3"></textarea>
+            </div>
+
+            <!-- Template Selection -->
+            <div class="bg-gray-800 p-5 rounded-xl shadow-lg flex flex-col gap-3">
+                <label class="text-base font-semibold text-gray-100 flex items-center gap-2">
+                    <span class="text-purple-400">🎨</span> Select a Template
+                </label>
+                <div class="grid grid-cols-2 gap-3">
+                    <button
+                        class="bg-purple-700 border-2 border-purple-400 text-white px-3 py-2 rounded-lg flex items-center font-medium shadow active"
+                        style="box-shadow: 0 0 0 2px #a78bfa;">
+                        <span class="w-4 h-4 bg-white rounded-full mr-2 border border-gray-400"></span>
+                        White Text
+                    </button>
+                    <button
+                        class="bg-gray-900 hover:bg-gray-800 text-yellow-400 px-3 py-2 rounded-lg flex items-center border border-gray-700 hover:border-yellow-400 transition font-medium">
+                        <span class="w-4 h-4 bg-yellow-400 rounded-full mr-2 border border-yellow-300"></span>
+                        Golden Text
+                    </button>
+                    <button
+                        class="bg-gray-900 hover:bg-gray-800 text-pink-400 px-3 py-2 rounded-lg flex items-center border border-gray-700 hover:border-pink-400 transition font-medium">
+                        <span class="w-4 h-4 bg-pink-400 rounded-full mr-2 border border-pink-300"></span>
+                        Pink Text
+                    </button>
+                    <button
+                        class="bg-gray-900 hover:bg-gray-800 text-blue-400 px-3 py-2 rounded-lg flex items-center border border-gray-700 hover:border-blue-400 transition font-medium">
+                        <span class="w-4 h-4 bg-blue-400 rounded-full mr-2 border border-blue-300"></span>
+                        Blue Text
+                    </button>
+                </div>
+            </div>
+
+            <!-- Download Options -->
+            <div class="bg-gray-800 p-5 rounded-xl shadow-lg flex flex-col gap-5">
+                <label class="text-base font-semibold text-gray-100 flex items-center gap-2">
+                    <span class="text-purple-400">💾</span> Download Options
+                </label>
+                <div>
+                    <label class="text-sm block mb-2 text-gray-300">Duration (seconds)</label>
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-l text-lg font-bold transition border border-gray-600">
+                            -
+                        </button>
+                        <input
+                            class="w-16 text-center bg-gray-900 border-t border-b border-gray-600 text-lg font-semibold py-1 focus:outline-none focus:ring-2 focus:ring-purple-500 transition rounded-none"
+                            max="60" min="1" type="number"
+                            value="5"/>
+                        <button
+                            class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-r text-lg font-bold transition border border-gray-600">
+                            +
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-2">
+                    <button
+                        class="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1">
+                        <span>🖼️</span> PNG
+                    </button>
+                    <button
+                        class="bg-pink-500 hover:bg-pink-600 text-white px-3 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1">
+                        <span>🖼️</span> JPG
+                    </button>
+                    <button
+                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-1">
+                        <span>🎬</span> MP4
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preview Area -->
+        <section class="w-1/3  border">
+
+            <!-- Label - Live-preview -->
+            <div class="w-fit mx-auto py-2 text-lg font-semibold text-gray-100">
+                <span class="text-purple-400">👁️</span> Live Preview
+            </div>
+
+            <hr class="border-gray-700"/>
+
+            <!-- Preview Quote Display -->
+            <div class="h-5/6 aspect-[9/16] mx-auto my-4 bg-black border border-gray-700 rounded-lg
+                    flex items-center justify-center shadow-xl relative">
+                <div class="text-center p-8 max-w-sm">
+                    <p class="text-4xl font-bold text-white leading-tight">Your inspiring quote will appear here...</p>
+                </div>
+            </div>
+
+            <hr class="border-gray-700"/>
+
+        </section>
+
+        <!-- Preview Area -->
+        <section class="w-1/3 flex flex-col gap-6 border">
+
+        </section>
+
+    </main>
+</div>
