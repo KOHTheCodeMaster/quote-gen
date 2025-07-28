@@ -1,0 +1,162 @@
+<div class="bg-gray-900 text-gray-200 w-screen h-screen p-4 font-inter flex flex-col overflow-hidden">
+    <!-- Main Content -->
+    <main class="flex gap-4 justify-between h-full">
+        <!-- Left Panel -->
+        <section class="w-1/3 flex flex-col gap-6 border">
+            <!-- Quote-Gen Header -->
+            <div class="flex flex-col items-start mb-2">
+                <span class="text-2xl font-extrabold tracking-wide text-purple-400 pl-1 pb-1">Quote-Gen</span>
+                <hr class="border-gray-700 w-full mb-2"/>
+            </div>
+
+            <!-- Quote Input -->
+            <div class="bg-gray-800 p-5 rounded-xl shadow-lg flex flex-col gap-3">
+                <!-- Font Family Selector -->
+                <div class="flex items-center gap-4 mt-1">
+                    <label for="fontFamilySelect" class="text-sm text-gray-300 w-24">Font:</label>
+                    <select id="fontFamilySelect" [(ngModel)]="selectedFontFamily" class="flex-1 p-2 rounded bg-gray-700 text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <option *ngFor="let font of availableFonts" [ngValue]="font.family" [ngStyle]="{'font-family': font.family}">{{ font.display }}</option>
+                    </select>
+                </div>
+                <label class="text-base font-semibold text-gray-100 flex items-center gap-2">
+                    <span class="text-purple-400">📝</span> Enter Your Quote
+                </label>
+                <textarea
+                    class="w-full p-3 rounded-lg bg-gray-700 text-gray-200 text-lg focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                    placeholder="Type your inspiring quote here..."
+                    rows="6"
+                    [(ngModel)]="quoteText"></textarea>
+                <!-- Font Size & Line Height Sliders (Grouped) -->
+                <div class="flex items-center gap-4 mt-2">
+                    <label for="fontSizeSlider" class="text-sm text-gray-300 w-24">Font Size:</label>
+                    <input id="fontSizeSlider" type="range" min="10" max="100" step="1"
+                        [(ngModel)]="manualFontSize"
+                        (ngModelChange)="onFontSizeChange($event)"
+                        class="flex-1 accent-purple-500" />
+                    <span class="ml-2 text-sm text-purple-400 w-12 text-right">{{ manualFontSize }}px</span>
+                    <button type="button" class="ml-2 px-2 py-1 rounded bg-blue-600 text-white text-xs border border-blue-700 hover:bg-blue-700 transition" (click)="resetFontSize()">Reset</button>
+                </div>
+                <div class="flex items-center gap-4 mt-2">
+                    <label for="lineHeightSlider" class="text-sm text-gray-300 w-24">Line Height:</label>
+                    <input id="lineHeightSlider" type="range" min="10" max="150" step="1"
+                        [(ngModel)]="manualLineHeight"
+                        class="flex-1 accent-purple-500" />
+                    <span class="ml-2 text-sm text-purple-400 w-12 text-right">{{ manualLineHeight }}px</span>
+                    <button type="button" class="ml-2 px-2 py-1 rounded bg-blue-600 text-white text-xs border border-blue-700 hover:bg-blue-700 transition" (click)="resetLineHeight()">Reset</button>
+                </div>
+                <!-- Padding Slider -->
+                <div class="flex items-center gap-4 mt-2">
+                    <label for="paddingSlider" class="text-sm text-gray-300 w-24">Padding:</label>
+                    <input id="paddingSlider" type="range" min="0" max="128" step="1" [(ngModel)]="manualPadding" class="flex-1 accent-purple-500" />
+                    <span class="ml-2 text-sm text-purple-400 w-12 text-right">{{ manualPadding }}px</span>
+                    <button type="button" class="ml-2 px-2 py-1 rounded bg-blue-600 text-white text-xs border border-blue-700 hover:bg-blue-700 transition" (click)="resetPadding()">Reset</button>
+                </div>
+                <!-- Alignment Switches -->
+                <div class="flex items-center gap-4 mt-2">
+                    <label class="text-sm text-gray-300 w-24 flex items-center h-8">Alignment:</label>
+                    <!-- Justify Content Switch (Minimalistic) -->
+                    <label class="flex items-center cursor-pointer select-none gap-2 h-8">
+                        <span class="text-xs font-semibold" [ngClass]="isJustifyCenter ? 'text-purple-500' : 'text-gray-400'">Justify Center</span>
+                        <input type="checkbox" class="sr-only" [(ngModel)]="isJustifyCenter" (change)="toggleJustifyContent()">
+                        <div class="w-10 h-6 flex items-center rounded-full p-1 duration-300 border border-gray-400"
+                             [ngClass]="isJustifyCenter ? 'bg-purple-500' : 'bg-gray-600'">
+                            <div class="bg-white w-4 h-4 rounded-full shadow-md transform duration-300"
+                                 [ngStyle]="{ 'transform': isJustifyCenter ? 'translateX(16px)' : 'translateX(0)' }"></div>
+                        </div>
+                    </label>
+                    <!-- Items Center Switch (Minimalistic) -->
+                    <label class="flex items-center cursor-pointer select-none gap-2 h-8">
+                        <span class="text-xs font-semibold" [ngClass]="isItemsCenter ? 'text-purple-500' : 'text-gray-400'">Items Center</span>
+                        <input type="checkbox" class="sr-only" [(ngModel)]="isItemsCenter" (change)="toggleAlignItems()">
+                        <div class="w-10 h-6 flex items-center rounded-full p-1 duration-300 border border-gray-400"
+                             [ngClass]="isItemsCenter ? 'bg-purple-500' : 'bg-gray-600'">
+                            <div class="bg-white w-4 h-4 rounded-full shadow-md transform duration-300"
+                                 [ngStyle]="{ 'transform': isItemsCenter ? 'translateX(16px)' : 'translateX(0)' }"></div>
+                        </div>
+                    </label>
+                    <!-- Text Center Switch -->
+                    <label class="flex items-center cursor-pointer select-none gap-2 h-8">
+                        <span class="text-xs font-semibold" [ngClass]="isTextCenter ? 'text-purple-500' : 'text-gray-400'">Text Center</span>
+                        <input type="checkbox" class="sr-only" [(ngModel)]="isTextCenter" (change)="toggleTextCenter()">
+                        <div class="w-10 h-6 flex items-center rounded-full p-1 duration-300 border border-gray-400"
+                             [ngClass]="isTextCenter ? 'bg-purple-500' : 'bg-gray-600'">
+                            <div class="bg-white w-4 h-4 rounded-full shadow-md transform duration-300"
+                                 [ngStyle]="{ 'transform': isTextCenter ? 'translateX(16px)' : 'translateX(0)' }"></div>
+                        </div>
+                    </label>
+                </div>
+                <!-- Reset All Button with Tooltip -->
+                <div class="flex justify-end mt-2">
+                    <button type="button" class="px-4 py-2 rounded bg-red-600 text-white text-xs border border-red-700 hover:bg-red-700 transition relative group" (click)="hardReset()">
+                        Reset All
+                        <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-10 border border-gray-600 shadow-lg">
+                            Reset all styling settings to default
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Preview Area -->
+        <section class="w-1/3 flex flex-col border" style="background:#222;">
+
+            <!-- Label - Live-preview -->
+            <div class="w-fit mx-auto py-2 text-lg font-semibold" style="color:#c4b5fd;">
+                <span>👁️</span> Live Preview
+            </div>
+
+            <hr style="border-color:#374151;"/>
+
+            <!-- Preview Quote Display -->
+            <div id="quote-preview-area" class="h-5/6 aspect-[1/1] m-4 flex gap-0 shadow-xl"
+                 [ngStyle]="{ 'background': '#000', 'border': '1px solid #374151', 'padding': manualPadding + 'px' }"
+                 [ngClass]="[justifyContent === 'center' ? 'justify-center' : 'justify-start', alignItems === 'center' ? 'items-center' : 'items-start']">
+                <p class="w-fit whitespace-pre-line"
+                   [ngStyle]="{ 'color': '#fff', 'font-size.px': computedFontSize, 'line-height': computedLineHeight + 'px', 'text-align': isTextCenter ? 'center' : 'left', 'font-family': selectedFontFamily }"
+                   [innerHTML]="quoteText">
+                </p>
+            </div>
+
+            <hr style="border-color:#374151;"/>
+
+        </section>
+
+        <!-- Download Section - Minimalistic & Professional Redesign -->
+        <section class="w-1/3 flex flex-col justify-center border">
+            <div class="flex flex-col items-center justify-center h-full p-8 bg-gray-900 rounded-2xl shadow-xl border border-gray-800 mx-4 my-auto">
+                <!-- Download Icon and Title -->
+                <div class="flex flex-col items-center gap-2 mb-6">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/10">
+                        <!-- Download SVG Icon -->
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-purple-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"/>
+                        </svg>
+                    </div>
+                    <div class="text-lg font-semibold text-gray-100 tracking-tight">Download</div>
+                    <div class="text-xs text-gray-400">Export your quote as an image</div>
+                </div>
+                <!-- Download Buttons -->
+                <div class="flex gap-3 w-full max-w-xs mx-auto">
+                    <button (click)="downloadQuoteImage('png')"
+                        class="flex-1 flex items-center justify-center gap-2 px-0 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 font-medium text-base min-w-[90px] max-w-[120px] hover:bg-purple-600 hover:text-white transition">
+                        <!-- PNG SVG Icon -->
+                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-purple-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4"/>
+                        </svg>
+                        PNG
+                    </button>
+                    <button (click)="downloadQuoteImage('jpg')"
+                        class="flex-1 flex items-center justify-center gap-2 px-0 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 font-medium text-base min-w-[90px] max-w-[120px] hover:bg-yellow-500 hover:text-gray-900 transition">
+                        <!-- JPG SVG Icon -->
+                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-yellow-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4"/>
+                        </svg>
+                        JPG
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
