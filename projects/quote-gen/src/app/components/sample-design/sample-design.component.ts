@@ -224,16 +224,32 @@ export class SampleDesignComponent {
         this.manualLineHeight = Math.round(newFontSize * 1.3);
     }
 
-    // HD Button logic
+    // HD Button logic - renamed for clarity but keeping the same method name
     setHD720p() {
-        // Retain the current aspect ratio, update width/height smartly
+        // Check for 1:1 aspect ratio as a special case
+        if (this.previewAspectRatio === '1/1') {
+            // For square format, use 1080x1080
+            this.previewWidthPx = 1080;
+            this.previewHeightPx = 1080;
+            return;
+        }
+
+        // For other aspect ratios, use 1080p dimensions
         const [w, h] = this.previewAspectRatio.split('/').map(Number);
         if (w > 0 && h > 0) {
-            this.previewWidthPx = 1280;
-            this.previewHeightPx = Math.round(1280 * h / w);
+            if (w >= h) {
+                // For landscape orientations, set width to 1920 (1080p width)
+                this.previewWidthPx = 1920;
+                this.previewHeightPx = Math.round(1920 * h / w);
+            } else {
+                // For portrait orientations, set height to 1080 (1080p height)
+                this.previewHeightPx = 1080;
+                this.previewWidthPx = Math.round(1080 * w / h);
+            }
         } else {
-            this.previewWidthPx = 1280;
-            this.previewHeightPx = 720;
+            // Fallback to standard 1080p if aspect ratio is invalid
+            this.previewWidthPx = 1920;
+            this.previewHeightPx = 1080;
         }
     }
 

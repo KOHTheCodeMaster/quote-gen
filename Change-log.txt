@@ -19,7 +19,16 @@ Change Log:
 -----------
 ----------------------------------------------------------------------------------------------------
 
-Time Stamp:         6th Aug 2K25 - 08:13 PM..!!
+Time Stamp:         6th Aug 2K25 - 09:14 AM..!!
+Commit Message:     007 - Updated HD Button Resolution to 1080x1080 for 1:1 Aspect Ratio
+
+Quick Summary:
+
+1. Updated the HD button resolution to 1080x1080 to ensure a 1:1 aspect ratio for better design consistency.
+
+----------------------------------------------------------------------------------------------------
+
+Time Stamp:         6th Aug 2K25 - 08:13 AM..!!
 Commit Message:     006 - Fixed Aspect-Ratio Issue in `sample-design` Component
 
 Quick Summary:
