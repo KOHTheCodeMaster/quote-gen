@@ -1,0 +1,75 @@
+
+Time Stamp: 3rd Mar 2K25 - 12:13 PM..!!
+
+Title: Change Log for Commit History
+
+Category: Development -> Commit History -> Change Log
+
+Keywords: Change Log, Commit History, Updates, Refactoring, Changes
+
+Purpose: To maintain a detailed change log for the commit history of the project, including updates, refactoring, and other changes.
+
+Dev: K.O.H..!! (Harshit Gupta)
+
+GitHub: https://github.com/KOHTheCodeMaster/quote-gen
+
+----------------------------------------------------------------------------------------------------
+
+Change Log:
+-----------
+----------------------------------------------------------------------------------------------------
+
+Time Stamp:         6th Aug 2K25 - 08:13 PM..!!
+Commit Message:     006 - Fixed Aspect-Ratio Issue in `sample-design` Component
+
+Quick Summary:
+
+1. Fixed the aspect-ratio issue in the `sample-design` component to ensure it downloads correctly with the specified aspect ratio.
+
+----------------------------------------------------------------------------------------------------
+
+Time Stamp:         29th Jul 2K25 - 07:38 AM..!!
+Commit Message:     005 - Added Aspect-Ratio support to `sample-design` component
+
+Quick Summary:
+
+1. Added aspect-ratio support to the `sample-design` component to ensure consistent design proportions.
+
+----------------------------------------------------------------------------------------------------
+
+Time Stamp:         28th Jul 2K25 - 07:18 PM..!!
+Commit Message:     004 - Re-designed `sample-design` component
+
+Quick Summary:
+
+1. Re-designed the `sample-design` component to enhance its functionality and appearance.
+
+----------------------------------------------------------------------------------------------------
+
+Time Stamp:         7th May 2K25 - 10:18 PM..!!
+Commit Message:     003 - Added `sample-design` component to quickly generate a sample design
+
+Quick Summary:
+
+1. Added a new component `sample-design` to quickly generate a sample design.
+
+----------------------------------------------------------------------------------------------------
+
+Time Stamp:         3rd Mar 2K25 - 12:13 PM..!!
+Commit Message:     002 - `quote-gen` Project Initialization
+
+Quick Summary:
+
+1. Created the `quote-gen` project structure.
+2. Added the initial project files and Tailwind CSS for styling.
+
+----------------------------------------------------------------------------------------------------
+
+Time Stamp:         3rd Mar 2K25 - 12:13 PM..!!
+Commit Message:     001 - Init Commit
+
+Quick Summary:
+
+1. Empty Project Initialization.
+
+----------------------------------------------------------------------------------------------------

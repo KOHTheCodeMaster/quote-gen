@@ -107,6 +107,9 @@ export class SampleDesignComponent {
     }
 
     async downloadQuoteImage(type: 'png' | 'jpg') {
+        // Use current preview width/height and aspect ratio for download
+        const exportWidth = this.previewWidthPx;
+        const exportHeight = this.previewHeightPx;
         const el = this.getPreviewElement();
         if (!el) return;
         // Create a hidden container for export to avoid layout/CSS issues
@@ -114,16 +117,16 @@ export class SampleDesignComponent {
         exportContainer.style.position = 'fixed';
         exportContainer.style.left = '-99999px';
         exportContainer.style.top = '0';
-        exportContainer.style.width = this.previewWidthPx + 'px';
-        exportContainer.style.height = this.previewHeightPx + 'px';
+        exportContainer.style.width = exportWidth + 'px';
+        exportContainer.style.height = exportHeight + 'px';
         exportContainer.style.background = '#000';
         exportContainer.style.display = 'flex';
-        exportContainer.style.alignItems = this.alignItems;
-        exportContainer.style.justifyContent = this.justifyContent;
+        exportContainer.style.alignItems = this.isItemsCenter ? 'center' : 'flex-start';
+        exportContainer.style.justifyContent = this.isJustifyCenter ? 'center' : 'flex-start';
         exportContainer.style.padding = this.manualPadding + 'px';
         exportContainer.style.boxSizing = 'border-box';
         exportContainer.style.overflow = 'hidden';
-        exportContainer.style.borderRadius = '24px'; // match your preview
+        // No border radius
         // Clone the quote node
         const quoteNode = el.querySelector('p')?.cloneNode(true) as HTMLElement;
         if (quoteNode) {
@@ -138,6 +141,16 @@ export class SampleDesignComponent {
             quoteNode.style.padding = '0 8px';
             quoteNode.style.whiteSpace = 'pre-line';
             quoteNode.style.wordBreak = 'break-word';
+            if (this.isJustifyCenter) {
+                quoteNode.style.display = 'flex';
+                quoteNode.style.justifyContent = 'center';
+                quoteNode.style.alignItems = this.isItemsCenter ? 'center' : 'flex-start';
+                quoteNode.style.width = '100%';
+            } else {
+                quoteNode.style.display = '';
+                quoteNode.style.justifyContent = '';
+                quoteNode.style.alignItems = '';
+            }
             exportContainer.appendChild(quoteNode);
         }
         document.body.appendChild(exportContainer);
@@ -147,10 +160,10 @@ export class SampleDesignComponent {
             backgroundColor: null,
             useCORS: true,
             scale: 1,
-            width: this.previewWidthPx,
-            height: this.previewHeightPx,
-            windowWidth: this.previewWidthPx,
-            windowHeight: this.previewHeightPx
+            width: exportWidth,
+            height: exportHeight,
+            windowWidth: exportWidth,
+            windowHeight: exportHeight
         });
         document.body.removeChild(exportContainer);
         const mime = type === 'png' ? 'image/png' : 'image/jpeg';
@@ -224,12 +237,12 @@ export class SampleDesignComponent {
         }
     }
 
-    // On init, set to HD 720p with 16:9 aspect
+    // On init, set to 1:1 with 1080x1080
     ngOnInit() {
-        this.selectedAspectRatio = '16/9';
-        this.previewAspectRatio = '16/9';
-        this.previewWidthPx = 1280;
-        this.previewHeightPx = 720;
+        this.selectedAspectRatio = '1/1';
+        this.previewAspectRatio = '1/1';
+        this.previewWidthPx = 1080;
+        this.previewHeightPx = 1080;
     }
 
     /**
